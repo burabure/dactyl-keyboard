@@ -94,16 +94,7 @@
                                                     (- (+ (/ 1.5 2) (/ keyswitch-height 2)))
                                                     (- 0.9375)]))
                                     (->>  (cube 3 5.5 1.25)
-                                          (translate [0.5 (- 5.85) (- 1.75)]))
-                                    (->>  (cube 8 3.75 1.5)
-                                          (translate [(- (/ keyswitch-height 2) 2.25) (- 6.725) (- (/ 6.25 2))])))
-                                (union 
-                                    (->>  (with-fn 20 (cylinder 1.75 1.5))
-                                          (translate [(- (/ keyswitch-height 2) 3.25) (- 5.35) (- (/ 6.25 2))]))
-                                    (->>  (cube 4 4 1.5)
-                                          (translate [(- (/ keyswitch-height 2) 5.25) (- 5.1) (- (/ 6.25 2))]))
-                                    (->>  (cube 2 1 1.5)
-                                          (translate [(- (/ keyswitch-height 2) 2.515) (- 5.1) (- (/ 6.25 2))]))))                                                            
+                                          (translate [0.5 (- 5.85) (- 1.75)]))))                                                            
         plate-half (union (difference top-wall kailh-cutout) left-wall)]
     (union plate-half
            (->> plate-half
