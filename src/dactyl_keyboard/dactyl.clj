@@ -63,8 +63,8 @@
 ;; Switch Hole ;;
 ;;;;;;;;;;;;;;;;;
 
-(def keyswitch-height 14.4) ;; Was 14.1, then 14.25
-(def keyswitch-width 14.4)
+(def keyswitch-height 14.20) ;; Was 14.1, then 14.25
+(def keyswitch-width 14.20)
 
 (def sa-profile-key-height 12.7)
 
@@ -72,7 +72,9 @@
 (def mount-width (+ keyswitch-width 3))
 (def mount-height (+ keyswitch-height 3))
 
-(def single-plate
+(def kailh-socket-thickness 3.5)
+
+(defn single-plate [mirror-socket-cradle]
   (let [top-wall (->> (cube (+ keyswitch-width 3) 1.5 plate-thickness)
                       (translate [0
                                   (+ (/ 1.5 2) (/ keyswitch-height 2))
@@ -81,22 +83,35 @@
                        (translate [(+ (/ 1.5 2) (/ keyswitch-width 2))
                                    0
                                    (/ plate-thickness 2)]))
-        kailh-cutout (->> (cube (/ keyswitch-width 3) 1.6 plate-thickness)
+        kailh-cutout (->> (cube (/ keyswitch-width 3) 1.6 (+ plate-thickness 1))
                           (translate [0
                                   (+ (/ 1.5 2) (+ (/ keyswitch-height 2)))
-                                  (/ plate-thickness)]))                              
-        side-nub (->> (binding [*fn* 30] (cylinder 1 2.75))
-                      (rotate (/ π 2) [1 0 0])
-                      (translate [(+ (/ keyswitch-width 2)) 0 1])
-                      (hull (->> (cube 1.5 2.75 plate-thickness)
-                                 (translate [(+ (/ 1.5 2) (/ keyswitch-width 2))
-                                             0
-                                             (/ plate-thickness 2)]))))
+                                  (/ plate-thickness)]))
+        kailh-socket-cradle (difference 
+                                (union 
+                                    (->>  (cube (+ keyswitch-width 3.5) 1.5 2.875)
+                                          (translate [0
+                                                    (- (+ (/ 1.5 2) (/ keyswitch-height 2)))
+                                                    (- 0.9375)]))
+                                    (->>  (cube 3 5.5 1.25)
+                                          (translate [0.5 (- 5.85) (- 1.75)]))
+                                    (->>  (cube 8 3.75 1.5)
+                                          (translate [(- (/ keyswitch-height 2) 2.25) (- 6.725) (- (/ 6.25 2))])))
+                                (union 
+                                    (->>  (with-fn 20 (cylinder 1.75 1.5))
+                                          (translate [(- (/ keyswitch-height 2) 3.25) (- 5.35) (- (/ 6.25 2))]))
+                                    (->>  (cube 4 4 1.5)
+                                          (translate [(- (/ keyswitch-height 2) 5.25) (- 5.1) (- (/ 6.25 2))]))
+                                    (->>  (cube 2 1 1.5)
+                                          (translate [(- (/ keyswitch-height 2) 2.515) (- 5.1) (- (/ 6.25 2))]))))                                                            
         plate-half (union (difference top-wall kailh-cutout) left-wall)]
     (union plate-half
            (->> plate-half
                 (mirror [1 0 0])
-                (mirror [0 1 0])))))
+                (mirror [0 1 0]))
+          (->> kailh-socket-cradle
+                (mirror [(if mirror-socket-cradle 1 0) 0 0]))               
+    )))
 
 ;;;;;;;;;;;;;;;;
 ;; SA Keycaps ;;
@@ -216,13 +231,13 @@
   (apply-key-geometry (partial map +) rotate-around-x rotate-around-y column row position))
 
 
-(def key-holes
+(defn key-holes [left-side]
   (apply union
          (for [column columns
                row rows
                :when (or (.contains [2 3] column)
                          (not= row lastrow))]
-           (->> single-plate
+           (->> (single-plate left-side)
                 (key-place column row)))))
 
 (def caps
@@ -376,10 +391,10 @@
    (thumb-15x-layout (rotate (/ π 2) [0 0 1] (sa-cap 1.5)))))
 
 
-(def thumb
+(defn thumb [left-side]
   (union
-   (thumb-1x-layout single-plate)
-   (thumb-15x-layout single-plate)
+   (thumb-1x-layout (single-plate left-side))
+   (thumb-15x-layout (single-plate left-side))
    (thumb-15x-layout larger-plate)
    ))
 
@@ -641,17 +656,17 @@
          (screw-insert lastcol 1   bottom-radius top-radius height)
          ))
 (def screw-insert-height 3.8)
-(def screw-insert-bottom-radius (/ 5.31 2))
-(def screw-insert-top-radius (/ 5.1 2))
+(def screw-insert-bottom-radius (/ 4.5 2))
+(def screw-insert-top-radius (/ 3.5 2))
 (def screw-insert-holes  (screw-insert-all-shapes screw-insert-bottom-radius screw-insert-top-radius screw-insert-height))
 (def screw-insert-outers (screw-insert-all-shapes (+ screw-insert-bottom-radius 1.6) (+ screw-insert-top-radius 1.6) (+ screw-insert-height 1.5)))
 (def screw-insert-screw-holes  (screw-insert-all-shapes 1.7 1.7 350))
 
-(def model-right (difference 
+(defn model [left-side] (difference 
                    (union
-                    key-holes
+                    (key-holes left-side)
                     connectors
-                    thumb
+                    (thumb left-side)
                     thumb-connectors
                     (difference (union case-walls 
                                        screw-insert-outers 
@@ -666,31 +681,34 @@
                    (translate [0 0 -20] (cube 350 350 40)) 
                   ))
 
+(spit "things/switch-hole.scad"
+      (write-scad (single-plate false)))
+
 (spit "things/right.scad"
-      (write-scad model-right))
+      (write-scad (model false)))
  
 (spit "things/left.scad"
-      (write-scad (mirror [-1 0 0] model-right)))
+      (write-scad (mirror [-1 0 0] (model true))))
                   
-(spit "things/right-test.scad"
-      (write-scad 
-                   (union
-                    key-holes
-                    connectors
-                    thumb
-                    thumb-connectors
-                    case-walls 
-                    thumbcaps
-                    caps
-                    rj9-holder
-                    usb-holder-hole
-                    ; usb-holder-hole
-                    ;             screw-insert-outers 
-                    ;             teensy-screw-insert-holes
-                    ;             teensy-screw-insert-outers
-                    ;             usb-cutout 
-                    ;             rj9-space 
-                  )))
+; (spit "things/right-test.scad"
+;       (write-scad 
+;                    (union
+;                     (key-holes left-side)
+;                     connectors
+;                     thumb
+;                     thumb-connectors
+;                     case-walls 
+;                     thumbcaps
+;                     caps
+;                     rj9-holder
+;                     usb-holder-hole
+;                     ; usb-holder-hole
+;                     ;             screw-insert-outers 
+;                     ;             teensy-screw-insert-holes
+;                     ;             teensy-screw-insert-outers
+;                     ;             usb-cutout 
+;                     ;             rj9-space 
+;                   )))
 
 (spit "things/right-plate.scad"
       (write-scad 
