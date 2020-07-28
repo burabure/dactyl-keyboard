@@ -37,9 +37,13 @@ Here are materials I used for the build:
 - [Phone Reciever RJ9 Coiled Cable](https://www.amazon.com/gp/product/B07CJ8SVB4/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1)
 - [USB 2.0 A-Male to Micro B](https://www.amazon.com/gp/product/B0719H12WD/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1)
 - [Straight Solder Type A USB Female Jack Connector](https://www.amazon.com/gp/product/B0094DXENY/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
+<<<<<<< HEAD
 - [1U Blank DSA Keycaps](https://www.amazon.com/-/es/gp/product/B07VT7JP8Q/ref=ppx_yo_dt_b_asin_title_o04_s00?currency=USD&ie=UTF8&language=en_US&psc=1)
 - [2 4.5K Ohm Resistors](https://www.amazon.com/gp/product/B07QJB3LGN/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
 - Switches (64, but you should get more just in case), I used [Hako Violet](https://kbdfans.com/products/hako-violet-mechanical-switches)
+=======
+- Switches (64, but you should get more just in case), I used [Hako Violet]()
+>>>>>>> 39591f1... flesh out docs as a step by step tutorial
 - If you want hot swappable switches [Kailh PCB Socket](https://kbdfans.com/products/mechanical-keyboard-switches-kailh-pcb-socket)
 - if you want RGB [WS2812B Individually Addressable LED Strip Light](https://www.amazon.com/gp/product/B00ZHB9M6A/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)
 - optional, see below [USB 2.0 A Male to A Male](https://www.amazon.com/Monoprice-Transfer-Enclosures-Printers-Cameras/dp/B002KKXP3M/ref=sr_1_7?dchild=1&keywords=usb+a+to+usb+a&qid=1593642770&sr=8-7)
@@ -53,7 +57,49 @@ To be honest the comercially available USB 2.0 A MALE to A Male cables are trash
 - [Heat Shrink Tube](https://www.amazon.com/gp/product/B01MFA3OFA/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
 - [30 Gauge Stranded Wire](https://www.amazon.com/BNTECHGO-Silicone-Flexible-Resistant-Insulation/dp/B01M70EDCW/ref=sr_1_14?dchild=1&keywords=30+awg+wire&qid=1593643486&sr=8-14)
 
-### Wiring
+## Step by step
+
+### 1. Put all the switches in the key slots
+
+Required parts:
+
+* 64 switches
+* The dactyl cases
+
+Simplest, and yet the most rewarding step, put on the switches in the key slots,
+it is important to note that the little ledge has to be in-between the switch's
+legs
+
+![switches-back](images/well-placed-switches-back.jpg)
+
+Once you're done with all of them it should look beautiful like so:
+
+![switches-back](images/well-placed-switches-front.jpg)
+
+### 2. (Optional) Put the PCB socket in all of the switches
+
+Required parts:
+
+* 64 PCB sockets
+* The dactyl cases
+* Super glue (or any kind of strong plastic glue)
+
+If you opted to have swappable switches, now is the moment to put them, because
+the soldering part comes right after this, that means that if you decided to have
+swappable switches later on, then it is going to be a big pain to put them on.
+
+With that little word of advice out of the way, it is time to proceed to put the PCB on
+the a single switch, as the image shows:
+
+TODO: switch + PCB socket
+
+Once you confirm that everything fits perfectly, you can proceed to add a bit
+of glue right in the middle of the PCB socket and press against the ledge of the
+key slot, rinse and repeat for all the remaining keys.
+
+TODO: final image
+
+### 3. Wiring
 
 I wired using the traditional approach of using the legs of a diode to form the row connections, and then using magnet wire to connect the columns
 
