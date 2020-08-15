@@ -38,6 +38,7 @@ Here are materials I used for the build:
 - [USB 2.0 A-Male to Micro B](https://www.amazon.com/gp/product/B0719H12WD/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1)
 - [Straight Solder Type A USB Female Jack Connector](https://www.amazon.com/gp/product/B0094DXENY/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
 - [1U Blank DSA Keycaps](https://www.amazon.com/-/es/gp/product/B07VT7JP8Q/ref=ppx_yo_dt_b_asin_title_o04_s00?currency=USD&ie=UTF8&language=en_US&psc=1)
+- [2 4.5K Ohm Resistors](https://www.amazon.com/gp/product/B07QJB3LGN/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
 - Switches (64, but you should get more just in case), I used [Hako Violet](https://kbdfans.com/products/hako-violet-mechanical-switches)
 - If you want hot swappable switches [Kailh PCB Socket](https://kbdfans.com/products/mechanical-keyboard-switches-kailh-pcb-socket)
 - if you want RGB [WS2812B Individually Addressable LED Strip Light](https://www.amazon.com/gp/product/B00ZHB9M6A/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)
@@ -73,7 +74,7 @@ Finally wire the case connectors to the ProMicro, I cut the USB Micro B cable an
 
 ### Firmware
 
-Firmware goes hand in hand with how you wire the circuit. 
+Firmware goes hand in hand with how you wire the circuit.
  If you follow my wiring you can use my qmk firware [here](https://github.com/burabure/qmk_firmware/tree/master/keyboards/dactyl_manuform)
 
 ### Generating a Design
