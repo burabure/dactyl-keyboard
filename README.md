@@ -6,8 +6,6 @@ This is a fork of the [Dactyl](https://github.com/burabure/dactyl-keyboard), a p
 - added 3d printable wrist rests
 - added 3d printable bottom plates
 
-you can find ready to print files on the [things directory](https://github.com/aotarola/dactyl-keyboard/blob/master/things/)
-
 ![dactyl manuform](images/completed.jpg)
 
 ## Assembly
