@@ -1,15 +1,14 @@
 # My Dactyl-ManuForm Keyboard
 
-This is a fork of the [Dactyl](https://github.com/adereth/dactyl-keyboard), a parameterized, split-hand, concave, columnar, ergonomic keyboard.
-I've applied a couple fixes to the geometry and also:
+This is a fork of the [Dactyl](https://github.com/burabure/dactyl-keyboard), a parameterized, split-hand, concave, columnar, ergonomic keyboard with some custom tweaks done by @burabure:
 
 - added kailh switch support and kailh hot swap socket cradles for every switch.
 - added 3d printable wrist rests
 - added 3d printable bottom plates
 
-you can find ready to print files on the [things directory](https://github.com/burabure/dactyl-keyboard/blob/master/things/)
+you can find ready to print files on the [things directory](https://github.com/aotarola/dactyl-keyboard/blob/master/things/)
 
-![dactyl manuform](images/dactyl01.jpg)
+![dactyl manuform](images/completed.jpg)
 
 ## Assembly
 
