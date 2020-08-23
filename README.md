@@ -181,10 +181,37 @@ Following picture shows a somewhat finished wiring 😉
 
 ![arduino-wired](images/arduino-wired.jpg)
 
-### 8. Firmware flashing
+
+### 8. Notes on the right ✋🏻 side
+
+Wiring the right side is a mirror for the left side, for diodes and magnet
+wire.
+
+Arduino connections are mostly the same except:
+
+* You do **not need to** solder the 2 resistors for the I2C connection
+* For [handedness][handedness], you **NEED** to connect _GND_ to pin _A2_, this is to signal the firware that
+it is the right side. This is not need in the left side, cos it will assume left
+by default.
+
+[handedness]: https://beta.docs.qmk.fm/using-qmk/hardware-features/feature_split_keyboard#i-2-c-wiring
+
+### 9. Firmware flashing
 
 Firmware goes hand in hand with how you wire the circuit.
  If you follow my wiring you can use my qmk firmware [here](https://github.com/aotarola/qmk_firmware/tree/master/keyboards/handwired/dactyl_manuform/custom)
+
+### Wrapping it up
+
+Once you have tested that all the keys works well, then you are ready to hot glue
+the components onto the case:
+
+- Micro USB male to female USB 2.0 Connector
+- The two 4P4C Female Telephone Connector
+
+For the female thread brass, you just need to place them into the case's hole
+and heat the metal up with the solder iron, that will melt the plastic thus glueing
+the metal into it.
 
 ### Generating a Design
 
@@ -203,7 +230,22 @@ Firmware goes hand in hand with how you wire the circuit.
 - Make changes to design, repeat `load-file`, OpenSCAD will watch for changes and rerender.
 - When done, use OpenSCAD to export STL files
 
-**Tips**
+### Tips
+
+#### Testing the left side of the keyboard first
+
+I recommend you to test out the left side first before continuing with the right
+side. For this you will have to change the [connection type](https://github.com/aotarola/qmk_firmware/blob/master/keyboards/handwired/dactyl_manuform/custom/config.h#L26) to serial, compile, and
+flash.
+
+```diff
+- #define USE_I2C
++ #define USE_SERIAL
+```
+
+**IMPORTANT** Remember to change it back once you are ready to use the two sides.
+
+#### Working with the design file
 
 - [Some other ways to evaluate the clojure design file](http://stackoverflow.com/a/28213489)
 - [Example designing with clojure](http://adereth.github.io/blog/2014/04/09/3d-printing-with-clojure/)
