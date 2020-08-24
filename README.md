@@ -1,6 +1,7 @@
 # My Dactyl-ManuForm Keyboard
 
-This is a fork of the [Dactyl](https://github.com/burabure/dactyl-keyboard), a parameterized, split-hand, concave, columnar, ergonomic keyboard with some custom tweaks done by [@burabure](https://github.com/burabure):
+This is a fork of the [Dactyl](https://github.com/adereth/dactyl-keyboard), a parameterized, split-hand, concave, columnar, ergonomic keyboard.
+I've applied a couple fixes to the geometry and also:
 
 - added kailh switch support and kailh hot swap socket cradles for every switch.
 - added 3d printable wrist rests
@@ -62,11 +63,11 @@ Once you're done with all of them it should look beautiful like so:
 
 ![switches-back](images/well-placed-switches-front.jpg)
 
-### 2. (Optional) Put the PCB socket in all of the switches
+### 2. (Optional) Put the Sockets in all of the switches
 
 Parts required:
 
-* 64 PCB sockets
+* 64 sockets
 * The dactyl cases
 * Super glue (or any kind of strong plastic glue)
 
@@ -74,12 +75,12 @@ If you opted to have swappable switches, now is the time to put them, because
 the soldering part comes right after this, that means that if you decided to have
 swappable switches later on, then it's going to be a pain to put them on (desoldering and whatnot).
 
-With that little word of advice out of the way, let's proceed to put the PCB onto **single** switch, as the image shows:
+With that little word of advice out of the way, let's proceed to put the Socket onto **single** switch, as the image shows:
 
 ![pcb](images/pcb-socket.jpg)
 
 Once you confirm that everything fits perfectly, you can proceed to add a bit
-of glue right in the middle of the PCB socket and press against the tab of the
+of glue right in the middle of the socket and press against the tab of the
 key slot, rinse and repeat for all the remaining keys.
 
 ### 3. Wiring I: Connecting diodes for rows
@@ -147,8 +148,8 @@ Parts required:
 Proceed with soldering jumper wires to all of the four wires of the 4P4C Female
 Telephone connector
 
-The I2C connection requires for the wires connected to pin 2 & 3 to be connected
-to VCC pin [through resistors][I2C]. You could easily attach the two resistors and
+The [I2C connection][I2C] requires for the wires connected to pin 2 & 3 to be connected
+to VCC pin through resistors. You could easily attach the two resistors and
 connect them to VCC. See the image that illustrates the wiring:
 
 [I2C]: https://beta.docs.qmk.fm/using-qmk/hardware-features/feature_split_keyboard#i-2-c-wiring
@@ -169,7 +170,7 @@ the wiring from one end to the other 🤷🏻‍♂️. Make sure you have a mul
 to identify what wire is which.
 
 This part is mostly for the right side of the keyboard (remember to mirror the
-wiring on the PCB socket). Same as before, solder the jumper wires with the 4P4C
+wiring on the socket). Same as before, solder the jumper wires with the 4P4C
 wires, but this time use the multimeter to identify which cable corresponts to the
 left side wiring, my advice is try to match the colors of the jumper cables on the
 left.
